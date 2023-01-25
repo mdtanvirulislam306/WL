@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// Custom Route
+Route::get('/it-service',function () {return view('Pages.IT Service.index');})->name('it-sevice');
+Route::get('/it-service/create',function () {return view('Pages.IT Service.itServiceCreate');})->name('it-sevice.create');
+Route::get('/it-service/edit/{$id}',function () {return view('Pages.IT Service.itServiceEdit');})->name('it-sevice.edit');
+
+Auth::routes();
+
+Route::get('/', function () {return view('Pages.dashboard');})->name('home');
