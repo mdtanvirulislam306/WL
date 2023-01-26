@@ -56,7 +56,6 @@
                             <label class="form-check-label" for="remember">
                                 {{ __('Remember Me') }}
                             </label>
-                            <label class="form-check-label" for="rememberMe"> Remember Me </label>
                           </div>
                           @if (Route::has('password.request'))
                           <a href="{{ route('password.request') }}" class="small">Forgot Password?</a>
@@ -89,10 +88,10 @@
                       </a>
                     </div>
                   </div>
-                  <div class="mt-4">
-                    <p class="small">Don't have an account? <a href="{{ route('register') }}">Register</a>
+                  <!-- <div class="mt-4">
+                    <p class="small">Don't have an account? <a href="#">Register</a>
                     </p>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="nk-split-auth-footer">
                   <ul class="nav nav-sm ms-n2">

@@ -132,15 +132,15 @@
                               <img src="{{asset('assets/images/avatar/a.jpg')}}" alt="" class="img-thumbnail">
                             </div>
                             <div class="media-text">
-                              <div class="lead-text">Wesley Burland</div>
-                              <span class="sub-text">Owner & Founder</span>
+                              <div class="lead-text">{{ Auth::user()->name }}</div>
+                              <span class="sub-text">{{ Auth::user()->email }}</span>
                             </div>
                           </div>
                         </div>
                         <div class="dropdown-content dropdown-content-x-lg py-3 border-bottom border-light">
                           <ul class="link-list">
                             <li>
-                              <a href="profile.html">
+                              <a href="{{route('profile.edit')}}">
                                 <em class="icon ni ni-user"></em>
                                 <span>My Profile</span>
                               </a>
@@ -162,10 +162,13 @@
                         <div class="dropdown-content dropdown-content-x-lg py-3">
                           <ul class="link-list">
                             <li>
-                              <a href="#">
+                              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <em class="icon ni ni-signout"></em>
                                 <span>Log Out</span>
                               </a>
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                               </form>
                             </li>
                           </ul>
                         </div>

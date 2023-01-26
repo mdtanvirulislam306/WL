@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-// Custom Route
-Route::get('/it-service',function () {return view('Pages.IT Service.index');})->name('it-sevice');
-Route::get('/it-service/create',function () {return view('Pages.IT Service.itServiceCreate');})->name('it-sevice.create');
-Route::get('/it-service/edit/{$id}',function () {return view('Pages.IT Service.itServiceEdit');})->name('it-sevice.edit');
+
 
 Auth::routes();
-
-Route::get('/', function () {return view('Pages.dashboard');})->name('home');
+Route::middleware('auth')->group(function (){
+    Route::get('/', function () {return view('Pages.dashboard');})->name('home');
+    // IT Service Route
+    Route::get('/it-service',function () {return view('Pages.IT Service.index');})->name('it-sevice');
+    Route::get('/it-service/create',function () {return view('Pages.IT Service.itServiceCreate');})->name('it-sevice.create');
+    Route::get('/it-service/edit/{$id}',function () {return view('Pages.IT Service.itServiceEdit');})->name('it-sevice.edit');
+    Route::get('/it-service/edit/{$id}',function () {return view('Pages.IT Service.itServiceEdit');})->name('it-sevice.edit');
+    // Profile Route
+    Route::get('/profile/edit',[UserController::class,'profileEdit'])->name('profile.edit');
+    Route::post('/profile/update',[UserController::class,'profileUpdate'])->name('profile.update');
+});

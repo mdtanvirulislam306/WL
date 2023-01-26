@@ -18,7 +18,8 @@
                       <p class="small">Use your email continue with Nioboard (it's free)!</p>
                     </div>
                   </div>
-                  <form action="#">
+                  <form action="{{route('register')}}" method="post">
+                    @csrf
                     <div class="row gy-3">
                       <div class="col-12">
                         <div class="form-group">
@@ -37,7 +38,7 @@
                         <div class="form-group">
                           <label for="email" class="form-label">Email</label>
                           <div class="form-control-wrap">
-                            <input type="email" class="form-control @error('name') is-invalid @enderror" id="email" placeholder="Enter email address">
+                            <input type="email" class="form-control @error('name') is-invalid @enderror" id="email" value="{{ old('email') }}" name="email" required autocomplete="name" placeholder="Enter email address">
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -61,7 +62,7 @@
                       </div>
                       <div class="col-12">
                         <div class="form-group">
-                          <label for="password" class="form-label">Password</label>
+                          <label for="password" class="form-label">Confirm Password</label>
                           <div class="form-control-wrap">
                           <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                           </div>
