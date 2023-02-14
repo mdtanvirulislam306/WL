@@ -34,7 +34,7 @@
                                       <div class="form-group">
                                         <label for="name" class="form-label"> Name</label>
                                         <div class="form-control-wrap">
-                                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ old('name') }}" name="name" placeholder="Name">
+                                          <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" value="{{ Auth::user()->name }}" name="name" placeholder="Name">
                                           @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
                                       <div class="form-group">
                                         <label for="email" class="form-label"> Email</label>
                                         <div class="form-control-wrap">
-                                          <input type="email" class="form-control" id="email" name="email" value="{{Auth::user()->email}}" >
+                                          <input type="email" class="form-control" id="email" name="email" value="{{Auth::user()->email}}" readonly>
                                         </div>
                                       </div>
                                     </div>
@@ -55,7 +55,7 @@
                                       <div class="form-group">
                                         <label for="phone" class="form-label">Phone</label>
                                         <div class="form-control-wrap">
-                                          <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" placeholder=" Phone number">
+                                          <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ Auth::user()->number }}" readonly>
                                           @error('phone')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -68,7 +68,7 @@
                                       <div class="form-group">
                                         <label for="password" class="form-label">Password</label>
                                         <div class="form-control-wrap">
-                                          <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" id="password" name="password" placeholder="Password">
+                                          <input type="password" class="form-control @error('password') is-invalid @enderror"  id="password" name="password" placeholder="Password">
                                           @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -91,7 +91,11 @@
                                     <div class="form-control-wrap">
                                       <div class="image-upload-wrap d-flex flex-column align-items-center">
                                         <div class="media media-huge border">
+                                          @if (Auth::user()->image!=null)
+                                          <img id="image-result" class="w-100 h-100" src="{{asset(Auth::user()->image)}}" alt="avatar">
+                                          @else
                                           <img id="image-result" class="w-100 h-100" src="{{asset('assets/images/avatar/avatar-placeholder.jpg')}}" alt="avatar">
+                                          @endif
                                         </div>
                                         <div class="pt-3">
                                         
@@ -127,15 +131,18 @@
             </div>
           </div>
 @push('custom-script')
-@if (Session::has('success'))
-              <script>
-                toastr.success("{{!! Session::has('success') !!}}")
-              </script>
-          @elseif (Session::has('error'))
-          <script>
-                toastr.error("{{!! Session::has('error') !!}}")
-          </script>
-          @endif
+
+@if(Session::has('message'))
+<script>
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.success("{{ session('message') }}");
+      </script>
+  @endif
+  
 @endpush
          
 @endsection

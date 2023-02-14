@@ -1,7 +1,7 @@
 <div class="nk-sidebar nk-sidebar-fixed is-theme" id="sidebar">
           <div class="nk-sidebar-element nk-sidebar-head">
             <div class="nk-sidebar-brand">
-              <a href="index.html" class="logo-link">
+              <a href="{{ route('home') }}" class="logo-link">
                 <div class="logo-wrap">
                  <img src="{{asset('assets/images/logo.png')}}"/>
                 </div>
@@ -24,7 +24,7 @@
               <div class="nk-sidebar-menu" data-simplebar>
                 <ul class="nk-menu">
                   <li class="nk-menu-item">
-                    <a href="index-ecommerce.html" class="nk-menu-link">
+                    <a href="{{ route('home') }}" class="nk-menu-link">
                       <span class="nk-menu-icon">
                         <em class="icon ni ni-dashboard"></em>
                       </span>

@@ -18,7 +18,7 @@
                       <em class="icon ni ni-menu-right"></em>
                     </button> -->
                   </div>
-                  <a href="index.html" class="logo-link">
+                  <a href="{{ route('home') }}" class="logo-link">
                     <div class="logo-wrap">
                      <img src="{{asset('assets/images/logo_black.png')}}" alt="logo">
                     </div>
@@ -116,12 +116,13 @@
                       <a href="#" data-bs-toggle="dropdown">
                         <div class="d-sm-none">
                           <div class="media media-md media-circle">
-                            <img src="{{asset('assets/images/avatar/a.jpg')}}" alt="" class="img-thumbnail">
+                         
+                            <img src="{{asset(Auth::user()->image)}}" alt="" class="img-thumbnail">
                           </div>
                         </div>
                         <div class="d-none d-sm-block">
                           <div class="media media-circle">
-                            <img src="{{asset('assets/images/avatar/a.jpg')}}" alt="" class="img-thumbnail">
+                            <img src="{{asset(Auth::user()->image)}}" alt="" class="img-thumbnail">
                           </div>
                         </div>
                       </a>
@@ -129,7 +130,7 @@
                         <div class="dropdown-content dropdown-content-x-lg py-3 border-bottom border-light">
                           <div class="media-group">
                             <div class="media media-xl media-middle media-circle">
-                              <img src="{{asset('assets/images/avatar/a.jpg')}}" alt="" class="img-thumbnail">
+                              <img src="{{asset(Auth::user()->image)}}" alt="" class="img-thumbnail">
                             </div>
                             <div class="media-text">
                               <div class="lead-text">{{ Auth::user()->name }}</div>

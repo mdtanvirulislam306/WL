@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -88,6 +89,8 @@ class UserController extends Controller
     // custom function
     public function profileEdit()   
     {
+        
+       //dd(Auth::user()->image);
         return view('Pages.Profile.profileEdit');
     }
     public function profileUpdate(Request $req)
@@ -99,30 +102,26 @@ class UserController extends Controller
             "image" => 'image|mimes:jpg,png,jpeg,gif,svg|max:1024',
         ]);
 
-        try {
-            // $user = new User;
-            // $user->name = $req->name;
-            // $user->email = $req->email;
-            // $user->number = $req->phone;
-            // $user->password = $req->name;
-            // $user->name = $req->name;
-
             $id = Auth::id();
             $user = User::find($id);
-            //dd($user);
             $user->name = $req->name;
             $user->email = $req->email;
             $user->number = $req->phone;
             $user->password = Hash::make($req->password);
-            $name = now()->timestamp.".{$req->image->getClientOriginalName()}";
-            $path = $req->file('image')->storeAs('images', $name, 'public');
-            $user->image = "/storage/{$path}";
-            //dd($user);
-            $user->save();
-            return redirect()->back()->with('success','Profile Updated!');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('error','Something is wrong!');
-        }
-        
+
+            if($req->file('image')){
+                $name = now()->timestamp.".{$req->image->getClientOriginalName()}";
+                //unlink($user->image);
+                $path = $req->file('image')->storeAs('user_images', $name, 'public');
+                $user->image = "/storage/{$path}";
+            }
+           
+            
+            if($user->save()){
+                return redirect()->back()->with('message','Profile Updated!');
+            }else{
+                return redirect()->back()->with('message','Something is wrong!');
+            }
+           
     }
 }
