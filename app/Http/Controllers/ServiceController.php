@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ServiceModel;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -15,6 +16,7 @@ class ServiceController extends Controller
     public function index()
     {
         //
+        return view('Pages.IT Service.index');
     }
 
     /**
@@ -24,7 +26,9 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        //dd(Status::get());
+        $stauses = Status::get();
+        return view('Pages.IT Service.itServiceCreate', compact('stauses'));
     }
 
     /**

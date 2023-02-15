@@ -166,7 +166,7 @@
                                           <div class="dz-message-icon"></div>
                                           <span class="dz-message-text">Drop files here or click to upload.</span>
                                           <div class="dz-message-btn mt-2">
-                                            <button class="btn btn-md btn-primary">Upload</button>
+                                            <button type="button" class="btn btn-md btn-primary">Upload</button>
                                           </div>
                                         </div>
                                       </div>
@@ -242,10 +242,9 @@
                                     <div class="form-control-wrap">
                                       <select class="js-select" data-search="true" data-sort="false">
                                         <option value="">Select an option</option>
-                                        <option value="1">Published</option>
-                                        <option value="2">Draft</option>
-                                        <option value="3">Scheduled</option>
-                                        <option value="4">Inactive</option>
+                                        @foreach ($stauses as $status )
+                                        <option value="{{ $status->id}}">{{ $status->status}}</option>
+                                        @endforeach
                                       </select>
                                     </div>
                                   </div>
