@@ -223,7 +223,7 @@
                                         <option value="6">Shirts</option>
                                         <option value="7">Household</option>
                                         <option value="8">Handbags</option>
-                                        <option value="9">Wines</option>
+                                        <option value="9">Wines</option> 
                                       </select>
                                     </div>
                                   </div>
@@ -242,8 +242,8 @@
                                     <div class="form-control-wrap">
                                       <select class="js-select" data-search="true" data-sort="false">
                                         <option value="">Select an option</option>
-                                        @foreach ($stauses as $status )
-                                        <option value="{{ $status->id}}">{{ $status->status}}</option>
+                                        @foreach ($statuses as $status )
+                                        <option value="{{ $status->id }}">{{ $status->status}}</option>
                                         @endforeach
                                       </select>
                                     </div>

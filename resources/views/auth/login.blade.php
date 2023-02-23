@@ -108,6 +108,6 @@
                 </div>
               </div>
             </div>
-            <div class="nk-split-content d-none d-md-block flex-grow-1 has-bg" data-bg="{{asset('assets/images/thumb/b.jpg')}}"></div>
+            <div class="nk-split-content d-none d-md-block flex-grow-1 has-bg" data-bg="{{asset('assets/images/thumb/c.jpg')}}"></div>
           </div>
 @endsection

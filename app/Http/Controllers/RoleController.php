@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ServiceModel;
-use App\Models\Status;
 use Illuminate\Http\Request;
-
-class ServiceController extends Controller
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,8 @@ class ServiceController extends Controller
     public function index()
     {
         //
-        return view('Pages.IT Service.index');
+        $role = Role::all();
+        return view('Pages.RolePermissions.index', compact('role'));
     }
 
     /**
@@ -26,9 +26,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //dd(Status::get());
-        $statuses = Status::get();
-        return view('Pages.IT Service.itServiceCreate', compact('statuses'));
+        //
     }
 
     /**
@@ -45,10 +43,10 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ServiceModel  $serviceModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ServiceModel $serviceModel)
+    public function show($id)
     {
         //
     }
@@ -56,10 +54,10 @@ class ServiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ServiceModel  $serviceModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceModel $serviceModel)
+    public function edit($id)
     {
         //
     }
@@ -68,10 +66,10 @@ class ServiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ServiceModel  $serviceModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServiceModel $serviceModel)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,10 +77,10 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ServiceModel  $serviceModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceModel $serviceModel)
+    public function destroy($id)
     {
         //
     }
